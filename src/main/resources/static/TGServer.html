@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/bootstrap-toggle.css">
+<link rel="stylesheet" href="resources/css/style2.css">
+
+<script type="text/javascript" src="resources/js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/js/bootstrap-toggle.min.js"></script>
+<title>TGServer-LoadManager</title>
+
+
+</head>
+
+<script type="text/javascript">
+
+var nIntervId;
+
+function refreshTable() {
+  nIntervId = setInterval(flashText, $("#refreshVal").val() * 1000);
+}
+
+function flashText() {
+	$('#tablearea').load('LoadManagerTable.jsp')
+}
+
+function stopRefresh() {
+  clearInterval(nIntervId);
+}
+
+$(function() {
+    $('#refresh').change(function() {
+    	
+    	var ref = 0;
+    	if( $(this).prop("checked")){	
+    		refreshTable();
+    	} else {
+    		stopRefresh();
+    	}
+  })}
+  )
+</script>
+
+<body>
+	<div class="pageheader">
+	<img src="images/header3.jpg" alt="Land Bank of the Philippines" width="100%" height="125" align="center" />
+	<div class="serverID"><h5>Server ID: AA</h5></div>
+	<div class="projecttitle">
+		Transaction Gateway Server<font size="1px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version 4.0&nbsp;&nbsp;&nbsp;Build No. 3</font>			
+	</div>						
+</div>
+
+<script>
+function date_time(id)
+{
+        date = new Date;
+        year = date.getFullYear();
+        month = date.getMonth();
+        months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'Jully', 'August', 'September', 'October', 'November', 'December');
+        d = date.getDate();
+        day = date.getDay();
+        days = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+        h = date.getHours();
+        if(h<10)
+        {
+                h = "0"+h;
+        }
+        m = date.getMinutes();
+        if(m<10)
+        {
+                m = "0"+m;
+        }
+        s = date.getSeconds();
+        if(s<10)
+        {
+                s = "0"+s;
+        }
+        result = '<b>'+days[day]+' '+months[month]+' '+d+', '+year+' '+h+':'+m+':'+s + "&nbsp;&nbsp;&nbsp</b>";
+        document.getElementById(id).innerHTML = result;
+        setTimeout('date_time("'+id+'");','1000');
+        return true;
+}
+</script>
+
+<div id="runningTime" class="date" align="right" onload="startTime()">
+	<script type="text/javascript">window.onload = date_time('runningTime');</script>
+</div>
+
+	
+	<div class="">
+		<div class="col-sm-2">
+			<h4>
+	<strong>Menu</strong>
+</h4>
+<div class="list-group">
+	<a href="LoadManager.jsp" class="list-group-item">Load Manager</a>
+	<a href="LoadManager2.jsp" class="list-group-item">Load Manager View</a>
+	<a href="Parameters.jsp" class="list-group-item">Parameters</a>
+</div>
+		
+			<div>
+				<div class="form-group">
+				  	<label for="refresh" class="col-md-8">Auto refresh page:</label>
+				  	<input id="refresh" type="checkbox" data-toggle="toggle">
+				</div>
+				<div class="form-group">
+				  	<label for="refreshVal" class="col-md-8">Refresh Interval (Sec.):</label>
+				  	<input class="form-control"  id="refreshVal" type="text" value="1" style="width: 60px;">
+				</div>
+			</div>
+			
+			
+		</div>
+		<div class="col-sm-10" style="padding-top: 20px;">
+			<h3>Load Manager</h3>
+			<div id="tablearea">
+				
+
+
+
+
+
+
+
+
+
+
+<h4>
+	<a href="LoadManagerDetails.jsp?lmName=MBA">Name: MBA</a> &nbsp;&nbsp;&nbsp; <!--  Code: 8015 -->
+</h4>
+<div  style="text-align: center">
+	<table class="table table-hover table-striped">
+		<thead>
+			<tr>
+		  		<th rowspan="2">Connection Name</th>
+		  		<th rowspan="2">Source Port</th>
+		  		<th rowspan="2">Status</th>
+		  		<th rowspan="2">Host<br/>Connection</th>
+		  		<th colspan="3">Queue</th>
+		  		<th>Output Queue</th>
+		  		<th colspan="3">Last Transaction</th>
+		  	</tr>
+		  	<tr>
+		  		<th>Count</th>
+		  		<th>View</th>
+		  		<th>Max</th>
+		  		<th>Max</th>
+		  		<th>Date & Time</th>
+		  		<th>Status</th>
+		  		<th>Response Time</th>
+		  	</tr>
+		</thead>
+		<tbody>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1001_8462</td>
+				<td>64140</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=0">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:33.542</td>
+				<td>Successful</td>
+				<td align="right">0.234</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1002_8462</td>
+				<td>64141</td>
+				<td>Waiting</td>
+				<td>UP</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=1">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:33.714</td>
+				<td>Successful</td>
+				<td align="right">0.219</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1003_8462</td>
+				<td>64142</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=2">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:33.933</td>
+				<td>Successful</td>
+				<td align="right">0.235</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1004_8462</td>
+				<td>64143</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=3">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:34.120</td>
+				<td>Successful</td>
+				<td align="right">0.343</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1005_8462</td>
+				<td>64144</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=4">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:34.511</td>
+				<td>Successful</td>
+				<td align="right">0.266</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1006_8462</td>
+				<td>64145</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=5">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:34.762</td>
+				<td>Successful</td>
+				<td align="right">0.392</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1007_8462</td>
+				<td>64146</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=6">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:34.762</td>
+				<td>Successful</td>
+				<td align="right">0.22</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1008_8462</td>
+				<td>64147</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=7">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:20.143</td>
+				<td>Successful</td>
+				<td align="right">0.25</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1009_8462</td>
+				<td>64149</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=8">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:20.081</td>
+				<td>Successful</td>
+				<td align="right">0.125</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1010_8462</td>
+				<td>64150</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=9">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:20.190</td>
+				<td>Successful</td>
+				<td align="right">0.062</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1011_8462</td>
+				<td>64156</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=10">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:20.487</td>
+				<td>Successful</td>
+				<td align="right">0.234</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1012_8462</td>
+				<td>64153</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=11">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:20.878</td>
+				<td>Successful</td>
+				<td align="right">0.203</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1013_8462</td>
+				<td>64154</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=12">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:21.096</td>
+				<td>Successful</td>
+				<td align="right">0.14</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1014_8462</td>
+				<td>64159</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=13">View</a></td>
+				<td>1</td>
+				<td>2</td>
+				<td>01-06-2024 19:22:21.081</td>
+				<td>Successful</td>
+				<td align="right">0.125</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1015_8462</td>
+				<td>64162</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=14">View</a></td>
+				<td>1</td>
+				<td>4</td>
+				<td>01-06-2024 19:22:21.034</td>
+				<td>Successful</td>
+				<td align="right">0.078</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1016_8462</td>
+				<td>64163</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=15">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:21.253</td>
+				<td>Successful</td>
+				<td align="right">0.125</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1017_8462</td>
+				<td>64164</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=16">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:21.581</td>
+				<td>Successful</td>
+				<td align="right">0.344</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1018_8462</td>
+				<td>64165</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=17">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:22.159</td>
+				<td>Successful</td>
+				<td align="right">0.234</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1019_8462</td>
+				<td>64167</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=18">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:22.503</td>
+				<td>Successful</td>
+				<td align="right">0.188</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1020_8462</td>
+				<td>64169</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=19">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:22.753</td>
+				<td>Successful</td>
+				<td align="right">0.266</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1021_8462</td>
+				<td>57110</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=20">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:23.334</td>
+				<td>Successful</td>
+				<td align="right">0.203</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1022_8462</td>
+				<td>57302</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=21">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:23.334</td>
+				<td>Successful</td>
+				<td align="right">0.172</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1023_8462</td>
+				<td>57303</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=22">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:23.381</td>
+				<td>Successful</td>
+				<td align="right">0.062</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1024_8462</td>
+				<td>57304</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=23">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:23.850</td>
+				<td>Successful</td>
+				<td align="right">0.094</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1025_8462</td>
+				<td>57308</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=24">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:24.053</td>
+				<td>Successful</td>
+				<td align="right">0.203</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1026_8462</td>
+				<td>57309</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=25">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:24.772</td>
+				<td>Successful</td>
+				<td align="right">0.391</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1027_8462</td>
+				<td>64181</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=26">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:25.116</td>
+				<td>Successful</td>
+				<td align="right">0.204</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1028_8462</td>
+				<td>64183</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=27">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:25.538</td>
+				<td>Successful</td>
+				<td align="right">0.25</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1029_8462</td>
+				<td>64185</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=28">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:26.163</td>
+				<td>Successful</td>
+				<td align="right">0.219</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1030_8462</td>
+				<td>64187</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=29">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:26.241</td>
+				<td>Successful</td>
+				<td align="right">0.203</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1031_8462</td>
+				<td>57313</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=30">View</a></td>
+				<td>1</td>
+				<td>2</td>
+				<td>01-06-2024 19:22:26.772</td>
+				<td>Successful</td>
+				<td align="right">0.391</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1032_8462</td>
+				<td>57315</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=31">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:27.147</td>
+				<td>Successful</td>
+				<td align="right">0.266</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1033_8462</td>
+				<td>64192</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=32">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:27.178</td>
+				<td>Successful</td>
+				<td align="right">0.281</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1034_8462</td>
+				<td>64195</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=33">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:27.397</td>
+				<td>Successful</td>
+				<td align="right">0.078</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1035_8462</td>
+				<td>64196</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=34">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:27.757</td>
+				<td>Successful</td>
+				<td align="right">0.375</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1036_8462</td>
+				<td>64199</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=35">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:27.741</td>
+				<td>Successful</td>
+				<td align="right">0.328</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1037_8462</td>
+				<td>64201</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=36">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:27.741</td>
+				<td>Successful</td>
+				<td align="right">0.328</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1038_8462</td>
+				<td>64202</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=37">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:28.163</td>
+				<td>Successful</td>
+				<td align="right">0.36</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1039_8462</td>
+				<td>64205</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=38">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:28.163</td>
+				<td>Successful</td>
+				<td align="right">0.313</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1040_8462</td>
+				<td>64207</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=39">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:28.397</td>
+				<td>Successful</td>
+				<td align="right">0.265</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1041_8462</td>
+				<td>64209</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=40">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:28.585</td>
+				<td>Successful</td>
+				<td align="right">0.313</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1042_8462</td>
+				<td>64210</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=41">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:28.757</td>
+				<td>Successful</td>
+				<td align="right">0.266</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1043_8462</td>
+				<td>64213</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=42">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:28.741</td>
+				<td>Successful</td>
+				<td align="right">0.203</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1044_8462</td>
+				<td>64215</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=43">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:29.085</td>
+				<td>Successful</td>
+				<td align="right">0.188</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1045_8462</td>
+				<td>64217</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=44">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:29.288</td>
+				<td>Successful</td>
+				<td align="right">0.172</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1046_8462</td>
+				<td>64219</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=45">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:29.446</td>
+				<td>Successful</td>
+				<td align="right">0.267</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1047_8462</td>
+				<td>64221</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=46">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:29.869</td>
+				<td>Successful</td>
+				<td align="right">0.25</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1048_8462</td>
+				<td>64223</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=47">View</a></td>
+				<td>1</td>
+				<td>2</td>
+				<td>01-06-2024 19:22:29.869</td>
+				<td>Successful</td>
+				<td align="right">0.11</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1049_8462</td>
+				<td>64225</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=48">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:30.103</td>
+				<td>Successful</td>
+				<td align="right">0.219</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1050_8462</td>
+				<td>57521</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=49">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:30.619</td>
+				<td>Successful</td>
+				<td align="right">0.313</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1051_8462</td>
+				<td>57522</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=50">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:30.572</td>
+				<td>Successful</td>
+				<td align="right">0.25</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1052_8462</td>
+				<td>57524</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=51">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:30.775</td>
+				<td>Successful</td>
+				<td align="right">0.297</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1053_8462</td>
+				<td>57525</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=52">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:31.041</td>
+				<td>Successful</td>
+				<td align="right">0.266</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1054_8462</td>
+				<td>64236</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=53">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:31.775</td>
+				<td>Successful</td>
+				<td align="right">0.328</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1055_8462</td>
+				<td>64238</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=54">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:31.932</td>
+				<td>Successful</td>
+				<td align="right">0.235</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1056_8462</td>
+				<td>64240</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=55">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:32.109</td>
+				<td>Successful</td>
+				<td align="right">0.256</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1057_8462</td>
+				<td>64242</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=56">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:32.464</td>
+				<td>Successful</td>
+				<td align="right">0.203</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1058_8462</td>
+				<td>64243</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=57">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:32.698</td>
+				<td>Successful</td>
+				<td align="right">0.297</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1059_8462</td>
+				<td>64246</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=58">View</a></td>
+				<td>1</td>
+				<td>3</td>
+				<td>01-06-2024 19:22:32.870</td>
+				<td>Successful</td>
+				<td align="right">0.109</td>
+			</tr>
+		
+					<tr>
+				
+			
+				<td>MBAAA_1060_8462</td>
+				<td>64248</td>
+				<td>Waiting</td>
+				<td>Up</td>
+				<td>0</td>
+				<td><a href="Queue.jsp?queueIndex=59">View</a></td>
+				<td>1</td>
+				<td>1</td>
+				<td>01-06-2024 19:22:33.245</td>
+				<td>Successful</td>
+				<td align="right">0.078</td>
+			</tr>
+		
+		
+							<tr class="evenrows">
+					
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><strong>Processing Count</strong></td>
+								<td><strong>0</strong></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+					
+					
+							<tr class="oddrows">
+					
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><strong>Total</strong></td>
+								<td><strong>0</strong></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+		</tbody>
+	</table>
+</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+</body>
+</html>
